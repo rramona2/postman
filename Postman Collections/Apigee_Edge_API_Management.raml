@@ -1,0 +1,892 @@
+#%RAML 1.0
+title: Apigee Edge API Management
+version: 1.0
+baseUri: http://example.com
+baseUriParameters: {}
+documentation:
+- title: Apigee Edge API Management
+  content: 'TODO: Add Description'
+securitySchemes:
+  auth:
+    type: Basic Authentication
+types:
+  AddTargetrequest:
+    example:
+      value:
+        host: 10.1.124.41
+        isEnabled: True
+        name: SpeechTest
+        port: 18080
+    displayName: Add TargetRequest
+    type: object
+    properties:
+      host:
+        required: true
+        displayName: host
+        type: string
+      isEnabled:
+        required: true
+        displayName: isEnabled
+        type: boolean
+      name:
+        required: true
+        displayName: name
+        type: string
+      port:
+        required: true
+        displayName: port
+        type: integer
+        format: int32
+  UserRolesUpdaterequest:
+    example:
+      value:
+        role:
+        - name: orgadmin
+          organization: dev
+        - name: sysadmin
+    displayName: User Roles UpdateRequest
+    type: object
+    properties:
+      role:
+        required: true
+        displayName: role
+        type: array
+        items:
+          type: Role
+  Role:
+    displayName: Role
+    type: object
+    properties:
+      name:
+        required: true
+        displayName: name
+        type: string
+      organization:
+        required: false
+        displayName: organization
+        type: string
+  CreateCompanyDeveloperrequest:
+    example:
+      value:
+        developer:
+        - email: sali@apigee.com
+          role: developer
+    displayName: Create Company DeveloperRequest
+    type: object
+    properties:
+      developer:
+        required: true
+        displayName: developer
+        type: array
+        items:
+          type: Developer
+  Developer:
+    displayName: Developer
+    type: object
+    properties:
+      email:
+        required: true
+        displayName: email
+        type: string
+      role:
+        required: true
+        displayName: role
+        type: string
+/v1:
+  /servers:
+    get:
+      displayName: List Servers
+      description: 'TODO: Add Description'
+      securedBy:
+      - auth
+      headers:
+        Authorization:
+          required: true
+          example:
+            value: Basic {{BASICAUTH}}
+          displayName: Authorization
+          type: string
+    post:
+      displayName: Deregister
+      description: 'TODO: Add Description'
+      securedBy:
+      - auth
+      headers:
+        Authorization:
+          required: true
+          example:
+            value: Basic {{BASICAUTH}}
+          displayName: Authorization
+          type: string
+        Content-Type:
+          required: true
+          example:
+            value: application/x-www-form-urlencoded
+          displayName: Content-Type
+          type: string
+    /<uuid>:
+      get:
+        displayName: List Server by UUID
+        description: 'TODO: Add Description'
+        securedBy:
+        - auth
+        headers:
+          Authorization:
+            required: true
+            example:
+              value: Basic {{BASICAUTH}}
+            displayName: Authorization
+            type: string
+    /35553ca7-9b49-4b1e-94d0-bda583836c6d:
+      post:
+        displayName: Set not reachable
+        description: 'TODO: Add Description'
+        body:
+          multipart/form-data:
+            type: object
+            properties:
+              reachable:
+                required: true
+                example:
+                  value: false
+                displayName: reachable
+                type: string
+        securedBy:
+        - auth
+        headers:
+          Authorization:
+            required: true
+            example:
+              value: Basic {{BASICAUTH}}
+            displayName: Authorization
+            type: string
+  /audits/o/{ORG}/companies:
+    uriParameters:
+      ORG:
+        required: true
+        displayName: ORG
+        type: string
+    get:
+      displayName: Audit
+      description: 'TODO: Add Description'
+      securedBy:
+      - auth
+      queryParameters:
+        expand:
+          required: true
+          example:
+            value: true
+          displayName: expand
+          type: boolean
+        timeline:
+          required: true
+          example:
+            value: month
+          displayName: timeline
+          type: string
+      headers:
+        Authorization:
+          required: true
+          example:
+            value: Basic {{BASICAUTH}}
+          displayName: Authorization
+          type: string
+  /users:
+    get:
+      displayName: List Users
+      description: 'TODO: Add Description'
+      securedBy:
+      - auth
+      headers:
+        Authorization:
+          required: true
+          example:
+            value: Basic {{BASICAUTH}}
+          displayName: Authorization
+          type: string
+  /organizations:
+    get:
+      displayName: List organizations
+      description: 'TODO: Add Description'
+      securedBy:
+      - auth
+      headers:
+        Authorization:
+          required: true
+          example:
+            value: Basic {{BASICAUTH}}
+          displayName: Authorization
+          type: string
+    /{ORG}:
+      uriParameters:
+        ORG:
+          required: true
+          displayName: ORG
+          type: string
+      /pods:
+        get:
+          displayName: Get Associated  Pods
+          description: 'TODO: Add Description'
+          securedBy:
+          - auth
+          headers:
+            Content-Type:
+              required: true
+              example:
+                value: application/x-www-form-urlencoded
+              displayName: Content-Type
+              type: string
+            Authorization:
+              required: true
+              example:
+                value: Basic {{BASICAUTH}}
+              displayName: Authorization
+              type: string
+        post:
+          displayName: Associate Org to POD
+          description: 'TODO: Add Description'
+          securedBy:
+          - auth
+          headers:
+            Content-Type:
+              required: true
+              example:
+                value: application/x-www-form-urlencoded
+              displayName: Content-Type
+              type: string
+            Authorization:
+              required: true
+              example:
+                value: Basic {{BASICAUTH}}
+              displayName: Authorization
+              type: string
+      /apiproducts:
+        post:
+          displayName: APIproduct Creation
+          description: 'TODO: Add Description'
+          securedBy:
+          - auth
+          headers:
+            Authorization:
+              required: true
+              example:
+                value: Basic {{BASICAUTH}}
+              displayName: Authorization
+              type: string
+            Content-Type:
+              required: true
+              example:
+                value: application/xml
+              displayName: Content-Type
+              type: string
+      /users:
+        post:
+          displayName: Create User in ORG
+          description: 'TODO: Add Description'
+          securedBy:
+          - auth
+          headers:
+            Authorization:
+              required: true
+              example:
+                value: Basic {{BASICAUTH}}
+              displayName: Authorization
+              type: string
+            Content-Type:
+              required: true
+              example:
+                value: application/xml
+              displayName: Content-Type
+              type: string
+        /shezze@ab.com/userroles/:
+          post:
+            displayName: Add user as Orgadmin
+            description: 'TODO: Add Description'
+            securedBy:
+            - auth
+            headers:
+              Authorization:
+                required: true
+                example:
+                  value: Basic {{BASICAUTH}}
+                displayName: Authorization
+                type: string
+              Content-Type:
+                required: true
+                example:
+                  value: application/xml
+                displayName: Content-Type
+                type: string
+      /developers:
+        get:
+          displayName: Get Developers
+          description: 'TODO: Add Description'
+          securedBy:
+          - auth
+          headers:
+            Authorization:
+              required: true
+              example:
+                value: Basic {{BASICAUTH}}
+              displayName: Authorization
+              type: string
+            Content-Type:
+              required: true
+              example:
+                value: application/xml
+              displayName: Content-Type
+              type: string
+        post:
+          displayName: Create Developer
+          description: 'TODO: Add Description'
+          securedBy:
+          - auth
+          headers:
+            Authorization:
+              required: true
+              example:
+                value: Basic {{BASICAUTH}}
+              displayName: Authorization
+              type: string
+            Content-Type:
+              required: true
+              example:
+                value: application/xml
+              displayName: Content-Type
+              type: string
+      /environments:
+        post:
+          displayName: Create New ENV in ORG
+          description: 'TODO: Add Description'
+          securedBy:
+          - auth
+          headers:
+            Authorization:
+              required: true
+              example:
+                value: Basic {{BASICAUTH}}
+              displayName: Authorization
+              type: string
+            Content-Type:
+              required: true
+              example:
+                value: application/xml
+              displayName: Content-Type
+              type: string
+      /companies:
+        post:
+          displayName: Create Company
+          description: 'TODO: Add Description'
+          securedBy:
+          - auth
+          headers:
+            Authorization:
+              required: true
+              example:
+                value: Basic {{BASICAUTH}}
+              displayName: Authorization
+              type: string
+            Content-Type:
+              required: true
+              example:
+                value: application/xml
+              displayName: Content-Type
+              type: string
+      /deployments:
+        get:
+          displayName: List Deployments
+          description: 'TODO: Add Description'
+          securedBy:
+          - auth
+          headers:
+            Authorization:
+              required: true
+              example:
+                value: Basic {{BASICAUTH}}
+              displayName: Authorization
+              type: string
+  /logsessions:
+    post:
+      displayName: Enable Debug w/o Restart
+      description: 'TODO: Add Description'
+      securedBy:
+      - auth
+      queryParameters:
+        session:
+          required: true
+          example:
+            value: logsession_name
+          displayName: session
+          type: string
+      headers:
+        Authorization:
+          required: true
+          example:
+            value: Basic {{BASICAUTH}}
+          displayName: Authorization
+          type: string
+        Content-Type:
+          required: true
+          example:
+            value: application/x-www-form-urlencoded
+          displayName: Content-Type
+          type: string
+    /logsession_name:
+      delete:
+        displayName: Disable Debug w/o Restart
+        description: 'TODO: Add Description'
+        securedBy:
+        - auth
+        headers:
+          Authorization:
+            required: true
+            example:
+              value: Basic {{BASICAUTH}}
+            displayName: Authorization
+            type: string
+          Content-Type:
+            required: true
+            example:
+              value: application/x-www-form-urlencoded
+            displayName: Content-Type
+            type: string
+  /cluster:
+    get:
+      displayName: Cluster Status
+      description: 'TODO: Add Description'
+      securedBy:
+      - auth
+      headers:
+        Authorization:
+          required: true
+          example:
+            value: Basic {{BASICAUTH}}
+          displayName: Authorization
+          type: string
+  /o:
+    /{ORG}:
+      uriParameters:
+        ORG:
+          required: true
+          displayName: ORG
+          type: string
+      /apis:
+        get:
+          displayName: Api list
+          description: 'TODO: Add Description'
+          securedBy:
+          - auth
+          headers:
+            Authorization:
+              required: true
+              example:
+                value: Basic {{BASICAUTH}}
+              displayName: Authorization
+              type: string
+        post:
+          displayName: Deploy API
+          description: 'TODO: Add Description'
+          securedBy:
+          - auth
+          queryParameters:
+            action:
+              required: true
+              example:
+                value: import\
+              displayName: action
+              type: string
+            name:
+              required: true
+              example:
+                value: _API_
+              displayName: name
+              type: string
+          headers:
+            Authorization:
+              required: true
+              example:
+                value: Basic {{BASICAUTH}}
+              displayName: Authorization
+              type: string
+            Content-Type:
+              required: true
+              example:
+                value: application/octet-stream
+              displayName: Content-Type
+              type: string
+        /testing:
+          delete:
+            displayName: Delete an API
+            description: 'TODO: Add Description'
+            securedBy:
+            - auth
+            headers:
+              Authorization:
+                required: true
+                example:
+                  value: Basic {{BASICAUTH}}
+                displayName: Authorization
+                type: string
+        /_API_/revisions/_revision_/deployments:
+          post:
+            displayName: Undeploy Revisions
+            description: 'TODO: Add Description'
+            securedBy:
+            - auth
+            queryParameters:
+              action:
+                required: true
+                example:
+                  value: undeploy
+                displayName: action
+                type: string
+              env:
+                required: true
+                example:
+                  value: '{{ENV}}'
+                displayName: env
+                type: string
+            headers:
+              Authorization:
+                required: true
+                example:
+                  value: Basic {{BASICAUTH}}
+                displayName: Authorization
+                type: string
+              Content-Type:
+                required: true
+                example:
+                  value: application/octet-stream
+                displayName: Content-Type
+                type: string
+        /_api_/revisions/_revision_/deployments:
+          get:
+            displayName: Deployments
+            description: 'TODO: Add Description'
+            securedBy:
+            - auth
+            headers:
+              Authorization:
+                required: true
+                example:
+                  value: Basic {{BASICAUTH}}
+                displayName: Authorization
+                type: string
+      /apiproducts:
+        get:
+          displayName: Api Products
+          description: 'TODO: Add Description'
+          securedBy:
+          - auth
+          headers:
+            Authorization:
+              required: true
+              example:
+                value: Basic {{BASICAUTH}}
+              displayName: Authorization
+              type: string
+      /apps:
+        get:
+          displayName: List apps
+          description: 'TODO: Add Description'
+          securedBy:
+          - auth
+          headers:
+            Authorization:
+              required: true
+              example:
+                value: Basic {{BASICAUTH}}
+              displayName: Authorization
+              type: string
+        /_appid_:
+          get:
+            displayName: List app
+            description: 'TODO: Add Description'
+            securedBy:
+            - auth
+            headers:
+              Authorization:
+                required: true
+                example:
+                  value: Basic {{BASICAUTH}}
+                displayName: Authorization
+                type: string
+      /userroles/user/permissions:
+        get:
+          displayName: Get permissions for a role
+          description: 'TODO: Add Description'
+          securedBy:
+          - auth
+          headers:
+            Authorization:
+              required: true
+              example:
+                value: Basic {{BASICAUTH}}
+              displayName: Authorization
+              type: string
+            Content-Type:
+              required: true
+              example:
+                value: application/json
+              displayName: Content-Type
+              type: string
+      /oauth2/accesstokens/_tokenid_:
+        get:
+          displayName: OAuth2 Token Details Get
+          description: 'TODO: Add Description'
+          securedBy:
+          - auth
+          headers:
+            Authorization:
+              required: true
+              example:
+                value: Basic {{BASICAUTH}}
+              displayName: Authorization
+              type: string
+            Content-Type:
+              required: true
+              example:
+                value: application/json
+              displayName: Content-Type
+              type: string
+      /e:
+        /{ENV}:
+          uriParameters:
+            ENV:
+              required: true
+              displayName: ENV
+              type: string
+          /targetservers:
+            get:
+              displayName: List Target Servers
+              description: 'TODO: Add Description'
+              securedBy:
+              - auth
+              headers:
+                Authorization:
+                  required: true
+                  example:
+                    value: Basic {{BASICAUTH}}
+                  displayName: Authorization
+                  type: string
+            post:
+              displayName: Add Target
+              description: 'TODO: Add Description'
+              body:
+                text/plain:
+                  example:
+                    value:
+                      host: 10.1.124.41
+                      isEnabled: True
+                      name: SpeechTest
+                      port: 18080
+                  displayName: Body
+                  type: AddTargetrequest
+              securedBy:
+              - auth
+              headers:
+                content-type:
+                  required: true
+                  example:
+                    value: application/json
+                  displayName: content-type
+                  type: string
+                Authorization:
+                  required: true
+                  example:
+                    value: Basic {{BASICAUTH}}
+                  displayName: Authorization
+                  type: string
+          /keystores:
+            get:
+              displayName: List Keystores
+              description: 'TODO: Add Description'
+              securedBy:
+              - auth
+              headers:
+                Authorization:
+                  required: true
+                  example:
+                    value: Basic {{BASICAUTH}}
+                  displayName: Authorization
+                  type: string
+          /caches:
+            get:
+              displayName: List caches
+              description: 'TODO: Add Description'
+              securedBy:
+              - auth
+              headers:
+                Authorization:
+                  required: true
+                  example:
+                    value: Basic {{BASICAUTH}}
+                  displayName: Authorization
+                  type: string
+          /keyvaluemaps/_kvm_:
+            get:
+              displayName: KVM Get
+              description: 'TODO: Add Description'
+              securedBy:
+              - auth
+              headers:
+                Authorization:
+                  required: true
+                  example:
+                    value: Basic {{BASICAUTH}}
+                  displayName: Authorization
+                  type: string
+                Content-Type:
+                  required: true
+                  example:
+                    value: application/json
+                  displayName: Content-Type
+                  type: string
+            delete:
+              displayName: KVM Delete (Entire KVM)
+              description: 'TODO: Add Description'
+              securedBy:
+              - auth
+              headers:
+                Authorization:
+                  required: true
+                  example:
+                    value: Basic {{BASICAUTH}}
+                  displayName: Authorization
+                  type: string
+                Content-Type:
+                  required: true
+                  example:
+                    value: application/json
+                  displayName: Content-Type
+                  type: string
+          /servers:
+            get:
+              displayName: List org/env servers
+              description: 'TODO: Add Description'
+              securedBy:
+              - auth
+              headers:
+                Authorization:
+                  required: true
+                  example:
+                    value: Basic {{BASICAUTH}}
+                  displayName: Authorization
+                  type: string
+            post:
+              displayName: Register server with org
+              description: 'TODO: Add Description'
+              securedBy:
+              - auth
+              headers:
+                Authorization:
+                  required: true
+                  example:
+                    value: Basic {{BASICAUTH}}
+                  displayName: Authorization
+                  type: string
+                Content-Type:
+                  required: true
+                  example:
+                    value: application/x-www-form-urlencoded
+                  displayName: Content-Type
+                  type: string
+      /developers:
+        /_devemail_:
+          get:
+            displayName: Developer Details Get
+            description: 'TODO: Add Description'
+            securedBy:
+            - auth
+            headers:
+              Authorization:
+                required: true
+                example:
+                  value: Basic {{BASICAUTH}}
+                displayName: Authorization
+                type: string
+              Content-Type:
+                required: true
+                example:
+                  value: application/json
+                displayName: Content-Type
+                type: string
+          /apps/_app_:
+            get:
+              displayName: Developer App Details Get
+              description: 'TODO: Add Description'
+              securedBy:
+              - auth
+              headers:
+                Authorization:
+                  required: true
+                  example:
+                    value: Basic {{BASICAUTH}}
+                  displayName: Authorization
+                  type: string
+                Content-Type:
+                  required: true
+                  example:
+                    value: application/json
+                  displayName: Content-Type
+                  type: string
+'/:':
+  /:
+    /{HOST}:{PORT}/v1/buildinfo:
+      uriParameters:
+        HOST:
+          required: true
+          displayName: HOST
+          type: string
+        PORT:
+          required: true
+          displayName: PORT
+          type: string
+      get:
+        displayName: Build Info
+        description: 'TODO: Add Description'
+        securedBy:
+        - auth
+        headers:
+          Authorization:
+            required: true
+            example:
+              value: Basic {{BASICAUTH}}
+            displayName: Authorization
+            type: string
+    /{HOST}:8081/v1/classification/tree:
+      uriParameters:
+        HOST:
+          required: true
+          displayName: HOST
+          type: string
+      get:
+        displayName: Classifications
+        description: 'TODO: Add Description'
+        securedBy:
+        - auth
+        headers:
+          Authorization:
+            required: true
+            example:
+              value: Basic {{BASICAUTH}}
+            displayName: Authorization
+            type: string
+    /{HOST}:8080/v1/runtime/metrics/QPID-CLIENT:
+      uriParameters:
+        HOST:
+          required: true
+          displayName: HOST
+          type: string
+      get:
+        displayName: QPID Metrics
+        description: 'TODO: Add Description'
+        securedBy:
+        - auth
+        headers:
+          Authorization:
+            required: true
+            example:
+              value: Basic {{BASICAUTH}}
+            displayName: Authorization
+            type: string

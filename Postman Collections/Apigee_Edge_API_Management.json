@@ -1,0 +1,1460 @@
+{
+  "variables": [],
+  "info": {
+    "name": "Apigee Edge API Management",
+    "_postman_id": "800be70b-19ac-b2db-5a31-9c8954819bfc",
+    "description": "",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "_postman_id": "2ca6e8ea-eba9-dc2b-1a0c-5ab6c5cd5a2e",
+      "name": "Pods",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "06f2dbfc-1628-4a58-3eba-6b96b65a66c0",
+          "name": "Get Associated  Pods",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/organizations/{{ORG}}/pods",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "58f5c096-aa0a-046f-b3ef-f824170f194b",
+          "name": "Gateway Pod",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/servers?pod=gateway",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "3edae00f-2534-a5fc-5c88-2bbe00cb41a8",
+          "name": "Disassociate Org from POD",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/organizations/{{ORG}}/pods",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "action=remove&region={{REGION}}&pod={{POD}}"
+            },
+            "description": "  Disassociate a pod with an Organization"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "f41bc7f0-f5f4-df5b-4ae9-3077843f0924",
+          "name": "Analytics pod",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/servers?pod=analytics",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "f12889c6-35e2-fd77-98a4-7fbf9b9636dc",
+          "name": "Associate Org to POD",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/organizations/{{ORG}}/pods",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "region={{REGION}}&pod={{POD}}"
+            },
+            "description": "  Associate a pod with an organization"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "13915ed3-355a-db51-b657-e0dd13290e7a",
+      "name": "Bundle",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "30939330-45ee-f57f-b34c-2b6837781bd8",
+          "name": "Import Bundle",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/o/{{ORG}}/apis?action=import\\&name=_API_",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/octet-stream",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "file",
+              "file": {
+                "src": ""
+              }
+            },
+            "description": "  Import a bundle. Replace {{API}} with the api the bundle is being imported into and upload the <bundle name>.zip file below.\n    \n    If you wish to verify syntax as part of the upload. Add \\&validate=true after {{API}}\n\n`curl -v -u username:password -X POST http://localhost:8080/v1/organizations/<orgname>/apis?action=import\\&name={{API}} -H \"Content-Type: application/octet-stream\" -T <bundle name>.zip`\n\n\n"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "5c46c118-4c98-1df3-d07e-7c8ebc6a9d59",
+      "name": "Products",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "cf0c9a6c-6997-c3bc-a23d-fc28a98cfb77",
+          "name": "Api Products",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/o/{{ORG}}/apiproducts",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "8eb3eee8-8ce6-ffa3-5c74-fe53d352ca23",
+          "name": "APIproduct Creation",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/organizations/{{ORG}}/apiproducts",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/xml",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<ApiProduct name=\"base\">\n<ApiResources/>\n<ApprovalType>auto</ApprovalType>\n<Attributes>\n<Attribute>\n<Name>description</Name>\n<Value/>\n</Attribute>\n<Attribute>\n<Name>developer.quota.interval</Name>\n<Value>1</Value>\n</Attribute>\n<Attribute>\n<Name>developer.quota.limit</Name>\n<Value>2000000</Value>\n</Attribute>\n<Attribute>\n<Name>developer.quota.timeunit</Name>\n<Value>month</Value>\n</Attribute>\n<Attribute>\n<Name>access</Name>\n<Value>internal</Value>\n</Attribute>\n<Attribute>\n<Name>apisDeployedIn</Name>\n<Value>prod</Value>\n</Attribute>\n<Attribute>\n<Name>servicePlan</Name>\n<Value>null</Value>\n</Attribute>\n<Attribute>\n<Name>apiResourcesInfo</Name>\n<Value>[]</Value>\n</Attribute>\n<Attribute>\n<Name>disabledApiResourcesInfo</Name>\n<Value>[]</Value>\n</Attribute>\n</Attributes>\n<Description/>\n<DisplayName>base</DisplayName>\n<Scopes/>\n</ApiProduct>"
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "41d963bf-3ad5-8824-4741-16d99cc59d98",
+      "name": "TargetServers",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "7426d071-6f0d-be03-3e1f-b05459e49585",
+          "name": "Add Target",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/o/{{ORG}}/e/{{ENV}}/targetservers",
+            "method": "POST",
+            "header": [
+              {
+                "key": "content-type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"host\": \"10.1.124.41\",\n    \"isEnabled\": true,\n    \"name\": \"SpeechTest\",\n    \"port\": 18080\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "9f38044f-ad00-963f-e52e-799f09a14a0d",
+          "name": "List Target Servers",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/o/{{ORG}}/e/{{ENV}}/targetservers",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": "  List all the target servers for the org and env"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "1861ff9d-c3a3-68f4-900a-6d56545a28d0",
+      "name": "Audit",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "9163bd7c-2825-ece4-fe41-79093185712d",
+          "name": "Audit",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/audits/o/{{ORG}}/companies?expand=true&timeline=month",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "d617fe29-658b-10d8-c4fc-e1bad60734c5",
+      "name": "APIs",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "2f5bf197-8252-4fd1-0147-037fe29857aa",
+          "name": "Delete an API",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/o/{{ORG}}/apis/testing",
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": "  Make sure all revisions of an API are removed before going ahead and undeploying an API\n\n`curl -v -u username:password http://localhost:8080/v1/organizations/<orgname>/apis/<api you want to delete> -X DELETE`"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "9a6247a3-f29f-e156-d99e-cd784bc94ccc",
+          "name": "Api list",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/o/{{ORG}}/apis",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "f8573983-5e90-101a-b1b7-18757d145452",
+          "name": "Undeploy Revisions",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/o/{{ORG}}/apis/_API_/revisions/_revision_/deployments?action=undeploy&env={{ENV}}",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/octet-stream",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "description": "  Undeploy revision before going ahead and removing any API's.\n    \n`curl -v -u username:password http://localhost:8080/v1/organizations/<orgname>/apis/<api you want to delete>/revisions/<revisionnumber>/deployments?action=undeploy\\&env=<env where deployed>\\&force=true -X POST`"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "34d35d63-0db1-774c-df4b-5918df8499e8",
+          "name": "Deploy API",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/o/{{ORG}}/apis?action=import\\&name=_API_",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/octet-stream",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": "  Deploy the API in the environment you want to with a revision number one higher than the already existing revisions\n    \n`curl -v -u username:password -X POST http://localhost:8080/v1/organizations/{{ORG}}/apis/{{API}}/revisions/<revisionnumber>/deployments?action=deploy\\&env={{ENV}} -H \"Content-Type: application/octet-stream\"`"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "4cc07935-afbe-71dc-be7a-66d37ced2104",
+      "name": "Apps",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "a7b1edce-90d1-9219-2a9d-2556659e8c7c",
+          "name": "List apps ",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/o/{{ORG}}/apps",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": "  add expand=true to the QS to get more info"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "a5cb41ae-270c-216e-0b3a-91584d9206ca",
+          "name": "Add app credentials",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/organizations/{{ORG}}/developers/_devemail_/apps/_appname_/keys/create",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic bWR1bmtlckBhcGlnZWUuY29tOlVTb2x5bXAxYzUvL2EsLA==",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/xml",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<CredentialRequest>  \n            <Attributes/>\n            <ConsumerKey>_key_</ConsumerKey>\n            <ConsumerSecret>_secret_</ConsumerSecret>\n            <ApiProducts>\n            </ApiProducts>\n            <Scopes/>\n</CredentialRequest>\n"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "dc3acc1d-d193-d9c0-770d-c8dc7a2d7989",
+          "name": "Create Company APP",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/organizations/{{ORG}}/companies/{{COMPANY}}/apps",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/xml",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<App name=\"Companyapp1\">\n<AccessType>read</AccessType>\n\n\n<ApiProducts>\n<ApiProduct>base</ApiProduct>\n</ApiProducts>\n\n\n\n<AppFamily>Production</AppFamily>\n\n<Attributes>\n<Attribute>\n<Name>TropoAppToken</Name>\n<Value>\n98222c9d3bb44e9953438f86c661aaa3159f978814c10b9b6d4a70a0340039d46d3ab081c9e0198609e7850c\n</Value>\n</Attribute>\n<Attribute>\n<Name>shortcode</Name>\n<Value>37367045</Value>\n</Attribute>\n\n<Attribute>\n<Name>MMSURL</Name>\n<Value>https://api-dev-test.priv.bf.pacer.sl.attcompute.com/QAUtils/MOEndpoint</Value>\n</Attribute>\n\n<Attribute>\n<Name>SMSMOURL</Name>\n<Value>https://api-dev-test.priv.bf.pacer.sl.attcompute.com/QAUtils/MOEndpoint</Value>\n</Attribute>\n\n<Attribute>\n<Name>merchant_id</Name>\n<Value>d947b98e-950f-40c4-908a-28ce14ebe703</Value>\n</Attribute>\n\n</Attributes>\n\n<CallbackUrl>www.apigee.com</CallbackUrl>\n\n\n</App>\n"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "6e6f3a45-6352-a6a7-b76c-ef83437923e1",
+          "name": "List app",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/o/{{ORG}}/apps/_appid_",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": "  List out an app details"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "883c3d02-1d34-8129-817e-663c72562082",
+      "name": "User Roles",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "23d1ca6b-2eb1-5d20-8889-33c9ecd392b8",
+          "name": "User Roles Update",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/users/_email_/userroles",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"role\" : [ { \"name\" : \"orgadmin\", \"organization\" : \"dev\" }, { \"name\" : \"sysadmin\" } ] }"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "0d5ce7c9-68ee-f09a-1a4a-c6ac274297d4",
+          "name": "Get permissions for a role",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/o/{{ORG}}/userroles/user/permissions",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "84bf8c6c-0698-58d2-eacf-25568e3342fb",
+          "name": "Delete an organization userrole",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/users/_devemail_/userroles/user?org={{ORG}}",
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "7619bddb-7bb2-54df-ef84-e096ed73d835",
+      "name": "Users",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "fd142e92-3b68-e47d-679e-ac08fdc17207",
+          "name": "Create User in ORG",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/organizations/{{ORG}}/users",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/xml",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<User><FirstName>Shahzad</FirstName><LastName>Ali</LastName><Password>secret12</Password><EmailId>nottheemail@gmail.com</EmailId></User>"
+            },
+            "description": "  Replace <org-name> with Organization user needs to be added to\n\n  Change details with that of the users."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "6d378a71-017b-cdda-cd10-05d71dc40d6d",
+          "name": "Developer Details Get",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/o/{{ORG}}/developers/_devemail_",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "66553940-2d0e-bf31-f72e-7f3595741923",
+          "name": "List Users",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/users",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "b3bbdd42-0153-7ef5-8006-52d1deb5162c",
+          "name": "Add user as Orgadmin",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/organizations/{{ORG}}/users/shezze@ab.com/userroles/",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/xml",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<Roles><Role name=\"orgadmin\"/></Roles>"
+            },
+            "description": "  Replace <org-name> with Organization name and <user-email> with users email\n\n  If A different Role needs to be created the available options are\n\n  -  orgadmin\n    -  opsadmin\n    -  user\n    -  businessuser\n    \n  All have default permissions and full access to all entitires (APIs,API Products,Apps, Developers and Reports)\n\n  More complex roles and permissions can be configured using the RBAC API"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "cd691ae7-99ac-7610-2c9b-5dfb54bda448",
+      "name": "Developers",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "0deb20a8-b458-6679-3227-1c070a69b73e",
+          "name": "Create Developer",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/organizations/{{ORG}}/developers",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/xml",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<Developer>\n  <Email>thisisnottheemail@apigee.com</Email>\n  <FirstName>Argyle</FirstName>\n  <LastName>Robinson</LastName>\n  <UserName>doh</UserName>\n  <OrganizationName>Apigee</OrganizationName>\n  <Status>active</Status>\n  <Attributes/>\n</Developer>"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "ea20dbd4-52fb-6124-460b-8e6c53c1b090",
+          "name": "Get Developers",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/organizations/{{ORG}}/developers",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/xml",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "b48f6777-f646-c4e8-c076-43e9dc6af33f",
+      "name": "Keystores",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "453f5a21-8d6d-ca17-a3ba-c3e8f22fe1d0",
+          "name": "List Keystores",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/o/{{ORG}}/e/{{ENV}}/keystores",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": "  List the keystores in the environment"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "2c1804a8-f3c1-8ca1-8eb2-79997116de22",
+      "name": "Cache",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "1ec3c72c-890e-57e1-1eda-55ca233c8c81",
+          "name": "List caches",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/o/{{ORG}}/e/{{ENV}}/caches",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "7b6b0a22-b08e-6e51-88f9-7d5534a6d8e1",
+      "name": "KVM",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "8ed36b64-4529-6cc6-d923-cd2acb9b8874",
+          "name": "KVM Get",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/o/{{ORG}}/e/{{ENV}}/keyvaluemaps/_kvm_",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "0704a162-44e9-c4f9-5dd4-64c0cd29caec",
+          "name": "KVM Delete (Entire KVM)",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/o/{{ORG}}/e/{{ENV}}/keyvaluemaps/_kvm_",
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "9410cc99-e6b1-2cfc-7a04-c18375df3b35",
+      "name": "VirtualHosts",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "f6682c97-d29a-12ab-be43-a0e6a99de604",
+          "name": "List VirtualHosts",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/organizations/{{ORG}}/environments/{{ENV}}/virtualhosts",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": "  Update {{ORG}} and {{ENV}} variables as necessary to create a new environment"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "789024e8-cb6c-8e56-d705-542db8771008",
+          "name": "Add Virtual Host",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/organizations/{{ORG}}/environments/{{ENV}}/virtualhosts",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/xml",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<VirtualHost name=\"default\">\n  <HostAliases>\n    <HostAlias>myorg- test.apigee.net</HostAlias>\n  </HostAliases>\n  <Interfaces/> \n  <Port>443</Port>\n</VirtualHost>"
+            },
+            "description": "  Update {{ORG}} and {{ENV}} variables as necessary to create a new environment\n    \n  Update HostAlias\n   \n"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "cb68061b-2e8a-8346-4ede-dc802b6af3d8",
+      "name": "Environments",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "16414774-13ec-c4b3-2763-33acc85eddcd",
+          "name": "Delete Environment",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/organizations/{{ORG}}/environments/{{ENV}}",
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": "  Deletes a specific environment in an organization.\n\n`curl \"http://localhost:8080/v1/organizations/{ORG}/environments/{ENV}\" -X DELETE -u user:passwd `"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "68ae5122-9dba-bb6b-7adf-a1b6c80e63ed",
+          "name": "Create New ENV in ORG",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/organizations/{{ORG}}/environments",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/xml",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<Environment name=\"dev\"/>"
+            },
+            "description": "  Update {{ORG}} and {{ENV}} variables as necessary to create a new environment"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "03aa5fd8-c708-ddfa-e629-17092d19638d",
+          "name": "Update Environments",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/organizations/{{ORG}}/environments/{{ENV}}",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "description": "  Updates a specific environment in an organization.Descriptionn could be updated using the same.\n\n`curl -u user:passwd \"http://localhost:8080/v1/organizations/{{ORG}}/environments/{{ENV}}\" `"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "0a1a9853-6834-5d91-4129-8059a52d87a9",
+      "name": "Company",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "bbf28506-586d-a4bb-43d6-f216aeeabe29",
+          "name": "Create Company",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/organizations/{{ORG}}/companies",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/xml",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<Company name=\"DevCompany\">\n    <Apps>\n        <App>Companyapp1</App>\n    </Apps>\n    <DisplayName>Developer Company</DisplayName>\n    <Organization>prod</Organization>\n    <Status>active</Status>\n    <Attributes>\n        <Attribute>\n            <Name>OrgStatus</Name>\n            <Value>active</Value>\n        </Attribute>\n        <Attribute>\n            <Name>Region</Name>\n            <Value>north</Value>\n        </Attribute>\n    </Attributes>\n</Company>"
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "ca8ccfc8-b879-a24a-2b2b-423007c795c9",
+      "name": "Developer App",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "24082993-215a-3cf4-174e-597ec9e38d8a",
+          "name": "Developer App Details Get",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/o/{{ORG}}/developers/_devemail_/apps/_app_",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "1a6cf12b-3d0e-9931-62c7-ade6c4e78d99",
+          "name": "Delete app credentials",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/organizations/{{ORG}}/developers/_devemail_/apps/_appname_/keys/_key_",
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "bbee7abc-3d91-3d6e-3421-5ec18c268760",
+      "name": "Deployments",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "51a89891-f72c-28e8-e363-10919a67289a",
+          "name": "Deployments",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/o/{{ORG}}/apis/_api_/revisions/_revision_/deployments",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "f8343b9a-c392-92e8-39ae-a11c3d96127b",
+          "name": "List Deployments",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/organizations/{{ORG}}/deployments",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": "  Gets all the deployments of an organization"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "9c90449a-01ca-b0ed-56ce-fc011c4fa645",
+      "name": "Servers",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "50d690bc-753a-20fb-3949-c6caa2ebb143",
+          "name": "List Server by UUID",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/servers/<uuid>",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": "    Replace <uuid> with the UUID of the server whose information is needed"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "49eb4d26-6314-0ffe-f10f-8346ac7115f9",
+          "name": "List Servers",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/servers",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": "  Add the below and pod name for servers from different pods.\n\n    "
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "fd040557-406e-7e9f-4ab7-ddc06cd12187",
+          "name": "List org/env servers",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/o/{{ORG}}/e/{{ENV}}/servers",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "05698003-775a-9e78-3481-5c0d4d5e6943",
+          "name": "Register server with org",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/o/{{ORG}}/e/{{ENV}}/servers",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "region=dc-1&uuid=&pod=gateway-1&action=add"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "d847b8b6-2800-ef56-ed6d-66e4b0500fa5",
+          "name": "Associate  environments to MP",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/organizations/{{ORG}}/environments/{{ENV}}/servers",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "action=add&uuid=<uuid>"
+            },
+            "description": "  Update {{ORG}} and {{ENV}} variables as necessary to create a new environment\n    \n    Replace <uuid> with the UUID of the Message Processor(s).\n"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "2dce3fba-d831-995e-18fc-cf3809ab03c9",
+          "name": "Set not reachable",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/servers/35553ca7-9b49-4b1e-94d0-bda583836c6d",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "reachable",
+                  "value": "false",
+                  "type": "text"
+                }
+              ]
+            },
+            "description": "  Set a server as reachable or not reachable by variable.. Change <uuid> with the UUID of the server. \n    \n"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "4fc472b8-0d6e-85a6-3964-8d780adfda4d",
+          "name": "Deregister",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/servers",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "region=dc-1&uuid=&pod=analytics&action=remove"
+            },
+            "description": "  Deregister a Server"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "5c829419-00a5-d652-61d2-e37c052017be",
+      "name": "Organizations",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "1d2f18d0-4094-dc3e-e93d-4c0d219209a4",
+          "name": "List organizations",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/organizations",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "63b562af-598c-1894-1713-dba051e16919",
+      "name": "OAuth",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "50277a76-a9ca-dc68-efae-84670a7c7cf1",
+          "name": "OAuth2 Token Details Get",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/o/{{ORG}}/oauth2/accesstokens/_tokenid_",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "07eff816-ba3b-d5a4-6e6f-51c605225bd2",
+      "name": "zzzOthers",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "b0a1f81b-7ff3-375f-1060-17ef9d9ab020",
+          "name": "Disable Debug w/o Restart",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/logsessions/logsession_name",
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": "  To disable\n\n```  curl -v -u sysadmin_user:sysadmin_pass \"http://localhost:8082/v1/logsessions/logsession_name\" -X DELETE```\n\n  The port on MS is 8080 , routers 8081 and Mp 8082"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "c3276cb5-5b16-63ee-3a5d-45af8e87df78",
+          "name": "Create Company Developer",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/organizations/{{ORG}}/companies/{{COMPANY}}/developers",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"developer\": [\n        {\n            \"email\": \"sali@apigee.com\",\n            \"role\": \"developer\"\n        }\n    ]\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "6900cec6-5241-3723-92e8-e52eed0db382",
+          "name": "Build Info",
+          "request": {
+            "url": "{{PROTO}}://{{HOST}}:{{PORT}}/v1/buildinfo",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "audio data",
+                  "value": "",
+                  "type": "file"
+                }
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "9c75702d-bdb3-baf3-f360-d160ef7e2b6e",
+          "name": "Enable Debug w/o Restart ",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/logsessions?session=logsession_name",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": "  To enable debug on components without restart\n    \n\n`curl -v -u sysadmin_user:sysadmin_pass -X POST \"http://localhost:8082/v1/logsessions?session=logsession_name\" `\n  \n      To View\n  tail -f /opt/apigee4/var/log/apigee/{message-processor|router|management-server}/logs/system.log\n\n  The port on is 8080 , routers 8081 and Mp 8082"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "dc8a4a5d-73bc-10f1-6385-551d5e979c19",
+          "name": "Classifications",
+          "request": {
+            "url": "{{PROTO}}://{{HOST}}:8081/v1/classification/tree",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": "  This is an API call to verify api deployment status"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "cd88c9ef-e987-30ff-4a3d-6b6cd5fe8929",
+          "name": "Cluster Status",
+          "request": {
+            "url": "{{MGMTSVR}}/v1/cluster",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": "  If memberCount and the reachableCount are not the same check firewall connectivity PORT:4526 between the nodes.\n    \n    Add /members to see individual node information for each cluster member"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "bb936842-a820-5608-8091-ed54dfd24e03",
+          "name": "QPID Metrics",
+          "request": {
+            "url": "{{PROTO}}://{{HOST}}:8080/v1/runtime/metrics/QPID-CLIENT",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{BASICAUTH}}",
+                "description": ""
+              }
+            ],
+            "body": {},
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

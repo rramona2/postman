@@ -97,8 +97,6 @@ types:
     get:
       displayName: List Servers
       description: 'TODO: Add Description'
-      securedBy:
-      - auth
       headers:
         Authorization:
           required: true
@@ -109,8 +107,6 @@ types:
     post:
       displayName: Deregister
       description: 'TODO: Add Description'
-      securedBy:
-      - auth
       headers:
         Authorization:
           required: true
@@ -128,8 +124,6 @@ types:
       get:
         displayName: List Server by UUID
         description: 'TODO: Add Description'
-        securedBy:
-        - auth
         headers:
           Authorization:
             required: true
@@ -151,8 +145,6 @@ types:
                   value: false
                 displayName: reachable
                 type: string
-        securedBy:
-        - auth
         headers:
           Authorization:
             required: true
@@ -169,8 +161,6 @@ types:
     get:
       displayName: Audit
       description: 'TODO: Add Description'
-      securedBy:
-      - auth
       queryParameters:
         expand:
           required: true
@@ -195,8 +185,6 @@ types:
     get:
       displayName: List Users
       description: 'TODO: Add Description'
-      securedBy:
-      - auth
       headers:
         Authorization:
           required: true
@@ -208,8 +196,6 @@ types:
     get:
       displayName: List organizations
       description: 'TODO: Add Description'
-      securedBy:
-      - auth
       headers:
         Authorization:
           required: true
@@ -245,8 +231,6 @@ types:
         post:
           displayName: Associate Org to POD
           description: 'TODO: Add Description'
-          securedBy:
-          - auth
           headers:
             Content-Type:
               required: true
@@ -264,8 +248,6 @@ types:
         post:
           displayName: APIproduct Creation
           description: 'TODO: Add Description'
-          securedBy:
-          - auth
           headers:
             Authorization:
               required: true
@@ -283,8 +265,6 @@ types:
         post:
           displayName: Create User in ORG
           description: 'TODO: Add Description'
-          securedBy:
-          - auth
           headers:
             Authorization:
               required: true
@@ -302,8 +282,6 @@ types:
           post:
             displayName: Add user as Orgadmin
             description: 'TODO: Add Description'
-            securedBy:
-            - auth
             headers:
               Authorization:
                 required: true
@@ -321,8 +299,6 @@ types:
         get:
           displayName: Get Developers
           description: 'TODO: Add Description'
-          securedBy:
-          - auth
           headers:
             Authorization:
               required: true
@@ -339,8 +315,6 @@ types:
         post:
           displayName: Create Developer
           description: 'TODO: Add Description'
-          securedBy:
-          - auth
           headers:
             Authorization:
               required: true
@@ -358,8 +332,6 @@ types:
         post:
           displayName: Create New ENV in ORG
           description: 'TODO: Add Description'
-          securedBy:
-          - auth
           headers:
             Authorization:
               required: true
@@ -377,8 +349,6 @@ types:
         post:
           displayName: Create Company
           description: 'TODO: Add Description'
-          securedBy:
-          - auth
           headers:
             Authorization:
               required: true
@@ -396,8 +366,6 @@ types:
         get:
           displayName: List Deployments
           description: 'TODO: Add Description'
-          securedBy:
-          - auth
           headers:
             Authorization:
               required: true
@@ -409,8 +377,6 @@ types:
     post:
       displayName: Enable Debug w/o Restart
       description: 'TODO: Add Description'
-      securedBy:
-      - auth
       queryParameters:
         session:
           required: true
@@ -435,8 +401,6 @@ types:
       delete:
         displayName: Disable Debug w/o Restart
         description: 'TODO: Add Description'
-        securedBy:
-        - auth
         headers:
           Authorization:
             required: true
@@ -454,8 +418,6 @@ types:
     get:
       displayName: Cluster Status
       description: 'TODO: Add Description'
-      securedBy:
-      - auth
       headers:
         Authorization:
           required: true
@@ -474,8 +436,6 @@ types:
         get:
           displayName: Api list
           description: 'TODO: Add Description'
-          securedBy:
-          - auth
           headers:
             Authorization:
               required: true
@@ -486,8 +446,6 @@ types:
         post:
           displayName: Deploy API
           description: 'TODO: Add Description'
-          securedBy:
-          - auth
           queryParameters:
             action:
               required: true
@@ -518,8 +476,6 @@ types:
           delete:
             displayName: Delete an API
             description: 'TODO: Add Description'
-            securedBy:
-            - auth
             headers:
               Authorization:
                 required: true
@@ -531,8 +487,6 @@ types:
           post:
             displayName: Undeploy Revisions
             description: 'TODO: Add Description'
-            securedBy:
-            - auth
             queryParameters:
               action:
                 required: true
@@ -563,8 +517,6 @@ types:
           get:
             displayName: Deployments
             description: 'TODO: Add Description'
-            securedBy:
-            - auth
             headers:
               Authorization:
                 required: true
@@ -576,8 +528,6 @@ types:
         get:
           displayName: Api Products
           description: 'TODO: Add Description'
-          securedBy:
-          - auth
           headers:
             Authorization:
               required: true
@@ -589,8 +539,6 @@ types:
         get:
           displayName: List apps
           description: 'TODO: Add Description'
-          securedBy:
-          - auth
           headers:
             Authorization:
               required: true
@@ -602,8 +550,6 @@ types:
           get:
             displayName: List app
             description: 'TODO: Add Description'
-            securedBy:
-            - auth
             headers:
               Authorization:
                 required: true
@@ -615,8 +561,6 @@ types:
         get:
           displayName: Get permissions for a role
           description: 'TODO: Add Description'
-          securedBy:
-          - auth
           headers:
             Authorization:
               required: true
@@ -634,8 +578,6 @@ types:
         get:
           displayName: OAuth2 Token Details Get
           description: 'TODO: Add Description'
-          securedBy:
-          - auth
           headers:
             Authorization:
               required: true
@@ -660,8 +602,6 @@ types:
             get:
               displayName: List Target Servers
               description: 'TODO: Add Description'
-              securedBy:
-              - auth
               headers:
                 Authorization:
                   required: true
@@ -682,8 +622,6 @@ types:
                       port: 18080
                   displayName: Body
                   type: AddTargetrequest
-              securedBy:
-              - auth
               headers:
                 content-type:
                   required: true
@@ -701,8 +639,6 @@ types:
             get:
               displayName: List Keystores
               description: 'TODO: Add Description'
-              securedBy:
-              - auth
               headers:
                 Authorization:
                   required: true
@@ -714,8 +650,6 @@ types:
             get:
               displayName: List caches
               description: 'TODO: Add Description'
-              securedBy:
-              - auth
               headers:
                 Authorization:
                   required: true
@@ -727,8 +661,6 @@ types:
             get:
               displayName: KVM Get
               description: 'TODO: Add Description'
-              securedBy:
-              - auth
               headers:
                 Authorization:
                   required: true
@@ -745,8 +677,6 @@ types:
             delete:
               displayName: KVM Delete (Entire KVM)
               description: 'TODO: Add Description'
-              securedBy:
-              - auth
               headers:
                 Authorization:
                   required: true
@@ -764,8 +694,6 @@ types:
             get:
               displayName: List org/env servers
               description: 'TODO: Add Description'
-              securedBy:
-              - auth
               headers:
                 Authorization:
                   required: true
@@ -776,8 +704,6 @@ types:
             post:
               displayName: Register server with org
               description: 'TODO: Add Description'
-              securedBy:
-              - auth
               headers:
                 Authorization:
                   required: true
@@ -796,8 +722,6 @@ types:
           get:
             displayName: Developer Details Get
             description: 'TODO: Add Description'
-            securedBy:
-            - auth
             headers:
               Authorization:
                 required: true
@@ -815,8 +739,6 @@ types:
             get:
               displayName: Developer App Details Get
               description: 'TODO: Add Description'
-              securedBy:
-              - auth
               headers:
                 Authorization:
                   required: true
@@ -845,8 +767,6 @@ types:
       get:
         displayName: Build Info
         description: 'TODO: Add Description'
-        securedBy:
-        - auth
         headers:
           Authorization:
             required: true
@@ -863,8 +783,6 @@ types:
       get:
         displayName: Classifications
         description: 'TODO: Add Description'
-        securedBy:
-        - auth
         headers:
           Authorization:
             required: true
@@ -881,8 +799,6 @@ types:
       get:
         displayName: QPID Metrics
         description: 'TODO: Add Description'
-        securedBy:
-        - auth
         headers:
           Authorization:
             required: true
